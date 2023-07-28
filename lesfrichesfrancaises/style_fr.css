@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+
+}
+
+h2 {
+    text-align: right;
+    padding: 15px 15px;
+}
+
+nav{
+    padding:10px 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: goldenrod;
+    border: black solid 1px;
+    border-radius: 10px;
+}
+  
+nav li {
+    float: left;
+}
+  
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+nav li a:hover:not(.active) {
+    color: brown;
+}
