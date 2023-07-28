@@ -20,27 +20,20 @@
 
     <h2>Show</h2>
 
-    <?php
-    require("./lib/class.php");
-
-    $c = new Connect();
-    $result = $c->selectAll();
-
-    $n = $result->num_rows;
-
-    echo ("<ul>");
-    for ($i = 0; $i < $n; $i++) {
-        $row = $result->fetch_assoc();
-        $id = $row["id"];
-        $nom = $row["nom"];
-
-        echo ("<li>" . $id . " " . $nom . " <a href=./edit.php?id=" . $id . "> Edit </a>" . "<a href=./action_delete.php?id=" . $id . "> Delete </a>" . "</li>");
-    }
-    echo ("</ul");
-
-    $c->close();
-    ?>
-
+    <?php require("./lib/class.php"); ?>
+    <?php $c = new Connect(); ?>
+    <?php $r = $c->selectAll() ?>
+    <ul>
+        <?php for ($i = 0; $i < $r->num_rows; $i++) : ?>
+            <?php $row = $r->fetch_assoc(); ?>
+            <?php $id = $row["id"]; ?>
+            <?php $nom = $row["nom"]; ?>
+            <li>
+                <?php echo ($id); ?> <?php echo ($nom); ?> <a href=./edit.php?id=<?php echo ($id); ?>>Edit</a> <a href=./delete.php?id=<?php echo ($id); ?>>Delete</a>
+            </li>
+        <?php endfor; ?>
+        <?php $c->close(); ?>
+    </ul>
 </body>
 
 </html>
