@@ -3,5 +3,5 @@
 $servername = "localhost";
 $username = "mysql";
 $password = "mysql";
-$dbname = "lesfrichesfrancaises";
+$dbname = "lesfriche";
 $conn = mysqli_connect($servername, $username, $password, $dbname);

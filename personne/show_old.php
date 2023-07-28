@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <h1>Les Friches Francaises</h1>
     <nav>
         <ul>
@@ -19,44 +18,39 @@
         </ul>
     </nav>
 
+    <h2>Show</h2>
+
     <?php
     $srv = "localhost";
     $usr = "mysql";
     $pwd = "mysql";
     $db = "lesfrichesfrancaises";
-    // Get Arguments
-    $name = $_GET["name"];
-    // Create connection
-    $con = new mysqli($srv, $usr, $pwd, $db);
-    // Check connection
-    if ($con->connect_error) {
-        die("Connection failed: " . $con->connect_error);
-    } else {
-        // Add Record
-        $sql = "INSERT INTO test VALUES (NULL, '" . $name . "')";
-        if ($con->query($sql) === TRUE) {
-            echo "<h2>Added</h2>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $con->error;
-        }
 
-        // Show Records
+    $conn = new mysqli($srv, $usr, $pwd, $db);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
         $sql = "SELECT * FROM test";
-        $result = $con->query($sql);
+        $result = $conn->query($sql);
         $n = $result->num_rows;
 
         echo ("<ul>");
         for ($i = 0; $i < $n; $i++) {
             $row = $result->fetch_assoc();
+            $id = $row["id"];
+            $nom = $row["nom"];
 
-            echo ("<li>" . $row["id"] . " " . $row["nom"] . "</li>");
+            echo ("<li>" . $id . " " . $nom . " <a href=./edit.php?id=" . $id . "> Edit </a>" . "<a href=./action_delete.php?id=" . $id . "> Delete </a>" . "</li>");
         }
         echo ("</ul");
 
 
-        $con->close();
+        $conn->close();
     }
     ?>
+
+
 
 </body>
 

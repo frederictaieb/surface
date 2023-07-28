@@ -21,36 +21,25 @@
     <h2>Show</h2>
 
     <?php
-    $srv = "localhost";
-    $usr = "mysql";
-    $pwd = "mysql";
-    $db = "lesfrichesfrancaises";
+    require("./lib/class.php");
 
-    $conn = new mysqli($srv, $usr, $pwd, $db);
+    $c = new Connect();
+    $result = $c->selectAll();
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } else {
-        $sql = "SELECT * FROM test";
-        $result = $conn->query($sql);
-        $n = $result->num_rows;
+    $n = $result->num_rows;
 
-        echo ("<ul>");
-        for ($i = 0; $i < $n; $i++) {
-            $row = $result->fetch_assoc();
-            $id = $row["id"];
-            $nom = $row["nom"];
+    echo ("<ul>");
+    for ($i = 0; $i < $n; $i++) {
+        $row = $result->fetch_assoc();
+        $id = $row["id"];
+        $nom = $row["nom"];
 
-            echo ("<li>" . $id . " " . $nom . " <a href=./edit.php?id=" . $id . "> Edit </a>" . "<a href=./action_delete.php?id=" . $id . "> Delete </a>" . "</li>");
-        }
-        echo ("</ul");
-
-
-        $conn->close();
+        echo ("<li>" . $id . " " . $nom . " <a href=./edit.php?id=" . $id . "> Edit </a>" . "<a href=./action_delete.php?id=" . $id . "> Delete </a>" . "</li>");
     }
+    echo ("</ul");
+
+    $c->close();
     ?>
-
-
 
 </body>
 
