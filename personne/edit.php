@@ -19,6 +19,9 @@
     </nav>
     <h2>Edit</h2>
     <?php
+
+    $id = $_GET["id"];
+
     $srv = "localhost";
     $usr = "mysql";
     $pwd = "mysql";
@@ -29,28 +32,37 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } else {
-        $sql = "SELECT * FROM test";
+        $sql = "SELECT nom FROM test WHERE id=" . $id . ";";
         $result = $conn->query($sql);
         $n = $result->num_rows;
-
-        echo ("<ul>");
-        for ($i = 0; $i < $n; $i++) {
-            $row = $result->fetch_assoc();
-
-            echo ("<li>" . $row["id"] . " " . $row["nom"] . "</li>");
-        }
-        echo ("</ul");
-
-
+        $row = $result->fetch_assoc();
+        $nom = $row['nom'];
         $conn->close();
     }
+
+
+    echo ("The previous value of #" . $id . " is: ");
+    echo ($nom);
+
+    echo ("<form action='action_update.php' method='get'>");
+    echo ("<label for='id'>id</label>");
+    echo ("<input type='text' name='id' value = " . $id . "><br>");
+    echo ("<label for='nom'>Enter new name : </label>");
+    echo ("<input type='text' name='nom'><br>");
+    echo ("<input type='submit'>");
+
+    echo ("</form>");
+
     ?>
 
-    <form action="action_edit.php" method="get">
-        <label for="id">id </label>
-        <input type="text" name="id"><br>
-        <input type="submit">
-    </form>
+
+
+
+
+
+
+
+
 
 
 </body>
