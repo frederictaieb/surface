@@ -20,9 +20,9 @@
 
     <h2>Show</h2>
 
-    <?php require("./lib/class.php"); ?>
-    <?php $c = new Connect(); ?>
-    <?php $r = $c->selectAll() ?>
+    <?php require("./lib/bridge.php"); ?>
+    <?php $b = new Bridge(); ?>
+    <?php $r = $b->selectAll() ?>
     <ul>
         <?php for ($i = 0; $i < $r->num_rows; $i++) : ?>
             <?php $row = $r->fetch_assoc(); ?>
@@ -32,7 +32,7 @@
                 <?php echo ($id); ?> <?php echo ($nom); ?> <a href=./edit.php?id=<?php echo ($id); ?>>Edit</a> <a href=./delete.php?id=<?php echo ($id); ?>>Delete</a>
             </li>
         <?php endfor; ?>
-        <?php $c->close(); ?>
+        <?php $b->close(); ?>
     </ul>
 </body>
 

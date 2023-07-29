@@ -23,8 +23,8 @@
     <?php
     require("./lib/class.php");
 
-    $c = new Connect();
-    $result = $c->selectAll();
+    $b = new Bridge();
+    $result = $b->selectAll();
 
     $n = $result->num_rows;
 
@@ -38,7 +38,7 @@
     }
     echo ("</ul");
 
-    $c->close();
+    $b->close();
     ?>
 
 </body>

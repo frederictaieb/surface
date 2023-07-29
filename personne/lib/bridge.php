@@ -1,5 +1,5 @@
 <?php
-class Connect
+class Bridge
 {
     var $_usr;
     var $_pwd;
