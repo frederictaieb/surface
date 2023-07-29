@@ -13,8 +13,6 @@
         <ul>
             <li><a href="add.php">Add</a></li>
             <li><a href="show.php">Show</a></li>
-            <li><a href="edit.php">Edit</a></li>
-            <li><a href="delete.php">Delete</a></li>
         </ul>
     </nav>
 
