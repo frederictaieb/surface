@@ -2,7 +2,6 @@
 require 'connection.php';
 
 if (isset($_POST["submit"])) {
-
   $name = $_POST["name"];
   $age = $_POST["age"];
   $country = $_POST["country"];
@@ -14,28 +13,11 @@ if (isset($_POST["submit"])) {
     $language .= $row . ",";
   }
 
-  // Requête préparée avec des paramètres liés
-  $query = "INSERT INTO tb_data (name,age,country,gender,languages) VALUES (?, ?, ?, ?, ?)";
+  //$query = "INSERT INTO tb_data VALUES (NULL , 'Alberta', '32', 'UK', 'Female', 'English,')";
+  $query = "INSERT INTO tb_data VALUES (NULL , '" . $name . "', '" . $age . "', '" . $country . "', '" . $gender . "', '" . $language . "')";
 
-  $stmt = $conn->prepare($query);
 
-  // Vérifier si la préparation de la requête a réussi
-  // Vérifier si la préparation de la requête a réussi
-  if ($stmt === false) {
-    die("Erreur de préparation de la requête : " . $conn->error);
-  }
-
-  $stmt->bind_param("sssss", $name, $age, $country, $gender, $language);
-
-  // Exécuter la requête
-  if ($stmt->execute() === false) {
-    die("Erreur lors de l'exécution de la requête : " . $stmt->error);
-  }
-
-  // Fermer la requête et la connexion
-  $stmt->close();
-  $conn->close();
-
+  mysqli_query($conn, $query);
   echo ("<script> alert('Data Inserted Successfully'); </script>");
 }
 ?>
